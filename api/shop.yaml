@@ -1,0 +1,179 @@
+---
+openapi: 3.0.3
+servers:
+  - url: /api/shop
+info:
+  title: Shop API
+  version: '1.0.0'
+tags:
+  - name: Product, User
+paths:
+  /register:
+    post:
+      tags:
+        - User
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegisterResponse"
+  /login:
+    post:
+      tags:
+        - User
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+
+  /products:
+    get:
+      tags:
+        - Product
+      operationId: getAllProducts
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
+  /emails:
+    get:
+      tags:
+        - Product
+      operationId: getAllEmails
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmailSent'
+
+  /analytics:
+    get:
+      tags:
+        - Product
+      operationId: getAllAnalytics
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Analytics'
+
+  /buy/{name}:
+    post:
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Product
+      operationId: buyProduct
+      responses:
+        "200":
+          description: OK
+
+components:
+  schemas:
+    RegisterRequest:
+      required:
+        - email
+        - password
+        - name
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        name:
+          type: string
+    RegisterResponse:
+      required:
+        - token
+      type: object
+      properties:
+        token:
+          type: string
+    LoginRequest:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    LoginResponse:
+      required:
+        - token
+      type: object
+      properties:
+        token:
+          type: string
+
+
+    Product:
+      required:
+        - name
+        - price
+        - count
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+        count:
+          type: number
+
+    EmailSent:
+      required:
+        - email
+        - productName
+      properties:
+        email:
+          type: string
+        productName:
+          type: string
+
+    Analytics:
+      required:
+        - id
+        - productInfo
+      properties:
+        id:
+          type: string
+        productInfo:
+          type: string

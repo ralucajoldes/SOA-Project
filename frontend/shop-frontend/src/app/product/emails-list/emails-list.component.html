@@ -1,0 +1,11 @@
+<div class="emails-container">
+  <h2>Emails Sent</h2>
+  <div *ngIf="loading" class="loading">Loading emails...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <ul *ngIf="!loading && !error">
+    <li *ngFor="let email of emails" class="email-item">
+      <strong>Email:</strong> {{ email.email }} <br />
+      <strong>Product:</strong> {{ email.productName }}
+    </li>
+  </ul>
+</div>

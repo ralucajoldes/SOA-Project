@@ -1,0 +1,23 @@
+.emails-container {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.email-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.email-item:last-child {
+  border-bottom: none;
+}
+
+.loading {
+  text-align: center;
+  color: #007bff;
+}
+
+.error {
+  text-align: center;
+  color: red;
+}

@@ -1,0 +1,11 @@
+<div *ngIf="loading">Loading products...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+<div *ngIf="!loading && products.length === 0">No products available.</div>
+<ul *ngIf="!loading && products.length > 0">
+  <li *ngFor="let product of products" class="product-item">
+    <span class="product-name">{{ product.name }}</span>
+    <span class="product-price">Price: ${{ product.price }}</span>
+    <span class="product-count">Available: {{ product.count }}</span>
+    <button (click)="buyProduct(product.name)" [disabled]="product.count === 0">Buy</button>
+  </li>
+</ul>

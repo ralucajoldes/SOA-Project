@@ -1,0 +1,23 @@
+.analytics-container {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.analytic-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.analytic-item:last-child {
+  border-bottom: none;
+}
+
+.loading {
+  text-align: center;
+  color: #007bff;
+}
+
+.error {
+  text-align: center;
+  color: red;
+}
